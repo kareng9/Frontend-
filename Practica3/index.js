@@ -1,11 +1,16 @@
 window.addEventListener('DOMContentLoaded', function (event) {
     var form_register = document.querySelector('#form-register');
+    /*function soloNumeros(e){ //recibe un parámetro que es el evento del teclado
+        key=e.keyCode || e.which;
+        teclado = String.fromCharCode(key);
+        numeros = "0123456789";
+    }*/
     form_register.addEventListener('submit', function (event) {
 
         var canSubmit = true;
         var input_name = document.querySelector('#input_name');
 
-        //Valido nombre sea obligatorio, longitud mínima 3 caracteres
+        //Validar nombre sea obligatorio, longitud mínima 3 caracteres
 
         if (input_name.value == "") {
             document.querySelector('#name_container .input-error').innerHTML = 'El nombre es obligatorio';
@@ -20,7 +25,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
             }
         }
 
-        //Valido apellido sea obligatorio, longitud mínima 3 caracteres
+        //Validar apellido sea obligatorio, longitud mínima 3 caracteres
 
         var input_last_name = document.querySelector('#input_last_name');
         if (input_last_name.value == "") {
@@ -35,21 +40,24 @@ window.addEventListener('DOMContentLoaded', function (event) {
             }
         }
 
-        //Valido cedula sea obligatorio, longitud mínima 10 números
+        //Validar cedula sea obligatorio, longitud requerida 10 números
 
         var input_cedula = document.querySelector('#input_cedula');
         if (input_cedula.value == "") {
             document.querySelector('#cedula_container .input-error').innerHTML = 'La cédula es obligatoria';
             canSubmit = false;
         } else {
-            if (input_cedula.value.length <10 || input_cedula.value.length > 10 ) {
+            if (input_cedula.value.length < 10 || input_cedula.value.length > 10) {
                 document.querySelector('#cedula_container .input-error').innerHTML = 'La cedula debe tener 10 dígitos';
                 canSubmit = false;
             } else {
-                document.querySelector('#cedula_container .input-error').innerHTML = '';
-
+                if(isNaN(input_cedula.value)){ 
+                    document.querySelector('#cedula_container .input-error').innerHTML = 'La cédula debe contener solo dígitos';
+                    canSubmit = false;
+                } else {
+                    document.querySelector('#cedula_container .input-error').innerHTML = '';
+                }    
             }
-
         }
 
         //Validar correo
@@ -58,12 +66,12 @@ window.addEventListener('DOMContentLoaded', function (event) {
         if(input_mail.value == ""){
             document.querySelector('#email_container .input-error').innerHTML = 'El correo es obligatorio'
             canSubmit = false;
-        }else{
+        } else {
             var indexOne = input_mail.value.indexOf("@");
-            var indexTwo = input_mail.indexOf(".");
+            var indexTwo = input_mail.value.indexOf(".");
 
             if((indexOne < 0 || indexTwo < 0)){
-                document.querySelector('#email_container .input-error').innerHTML = 'El correo lo parámetros establecidos'
+                document.querySelector('#email_container .input-error').innerHTML = 'El correo no tiene los parámetros establecidos'
                 canSubmit = false;
             }else{
                 document.querySelector('#email_container .input-error').innerHTML = '';
