@@ -15,7 +15,7 @@ window.addEventListener('DOMContentLoaded', function(e){ //Cada vez que hago cli
                document.body.appendChild(contenedor);
                var boton1 = contenedor.getElementById("btn");
                boton1.addEventListener("click",(e) => {
-                if(isNaN(inputValue)){ //is not a number. Cuando es un string me vota la alerta con el inputValue impreso
+                if(!isNaN(inputValue)){ //is not a number. Cuando es un string me vota la alerta con el inputValue impreso
                     alert(inputValue);
                 } 
                 })
