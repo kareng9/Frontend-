@@ -1,21 +1,38 @@
 const fs= require('fs');
-fs.mkdir('C:\\Users\\Karen\\Desktop\\ManejoNode\\', (err, files) => {
+/*fs.readdir('C:\\Users\\Karen\\Desktop\\ManejoNode\\', (err) => {
     if(!err){
-        console.log("Se creo la carpeta")
+        console.log("ESTOY AQUI")
     }
-})
+})*/
 
 const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
-const anio = anio_actual.getFullYear()
+const fecha = new Date();
+const anio_actual = fecha.getFullYear();
+console.log(anio_actual);
+const path = ".\\pruebas\\"
 
-for(var i=0 ; i<anio.length ; i++){
-    console.log('C:\\Users\\Karen\\Desktop\\ManejoNode\\'+anio[i])
-    fs.mkdir('C:\\Users\\Karen\\Desktop\\ManejoNode\\'+anio[i],(err)=>{
+for(let i=2017 ; i<anio_actual ; i++){
+    //console.log('C:\\Users\\Karen\\Desktop\\ManejoNode\\'+anios[i])
+    fs.mkdir(path+i,(err)=>{
+        for(let j=0; j< meses.length ; j++){
+            fs.mkdir(path+i+'\\'+meses[j],(err)=>{
+                const dias = diasEnMes(j+1,i)
+                for(let d=1; d<=dias ; d++){
+                    fs.appendFile(path+i+'\\'+meses[j]+'\\'+d+'.txt',"Hola",(err)=>{
+                        if(!err){
+                            console.log("Se creo la carpeta")
+                        }else{
+                            console.log("No ingreso")
+                        }
+                    })
+                }
+            })
+        }
 
     })
-    for(var j=0; j<meses.length ; j++){
-        fs.mkdir('C:\\Users\\Karen\\Desktop\\ManejoNode\\'+anio[i]+'\\'+meses[j],(err)=>{
+    //console.log(anios)
+}
 
-        })
-    }
+function diasEnMes(mes,anio){
+    return new Date(anio,mes,0).getDate();
 }
