@@ -19,11 +19,31 @@
 <body>
     <div class="container-fluid container-custom">
         <div>
-            <h1><strong>Lista de Personajes</strong></h1>
+            <h1><strong>Personajes Marvel</strong></h1>
+            <div class="d-flex justify-content-between mb-4">
+                <h2>Listado de personajes</h2>
+                <button class="btn btn-danger d-flex align-items-center justify-content-center">
+                  <i class="fa-solid fa-right-from-bracket"></i>Cerrar sesión
+                </button>
+            </div>
+            <div class="input-group">
+                <input type="text" class="form-control" id="inputSearch" placeholder="Buscar">
+                <button class="btn btn-danger d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#addHeroe">
+                  <i class="fa-solid fa-plus"></i>Nuevo
+                </button>
+              </div>
         </div>
         <div id="list">
         
         </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Titulo</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Descripcion</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
     </div>
    
 </body>
